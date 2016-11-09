@@ -40,11 +40,12 @@ export default function(config) {
     Raygun.saveIfOffline(raygunConfig.offlineEnabled);
 
     Ember.onerror = function (error) {
-      console.info("Ember.onerror called");
+      console.info("Ember.onerror called", error);
       Raygun.send(error);
     };
 
     Ember.RSVP.on('error', function (error) {
+      console.info("Ember.RSVP error", error);
       Raygun.send(error);
     });
 
